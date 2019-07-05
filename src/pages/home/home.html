@@ -1,0 +1,125 @@
+<ion-header >
+  <ion-navbar color="primary" >
+    <ion-title >
+      <ion-icon name="menu" menuToggle></ion-icon>
+      Focus Catarat
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="backgroundImgA">
+<ion-grid>
+  <ion-row>
+      <ion-col >
+
+ <div [ngSwitch]="type">
+       <div *ngSwitchCase = "'principal'">
+            <img src='assets/img/PORTADA.jpg'/>
+            <div class="textp"> 
+              <p style='text-align: center;'>Así se ve un ojo con cataratas.</p>
+              <br>
+              <p style='text-align: center;'><b>Para empezar solo seleccione el ícono y empecemos</b></p>
+              <br>
+            </div>
+            <br>
+            <div class="icons">
+              <ion-icon (click)="changePicture()" name="camera" style="font-size: 5.2em;" ></ion-icon>
+            </div>
+
+           
+        </div>
+        
+        <div *ngSwitchCase = "'load'">
+            <br>
+            <div class="textp"> 
+              <p>La imagen fue capturada exitosamente.</p>
+            </div>
+            <br>
+            <img [src]="chosenPicture || placeholder" onerror="this.src='assets/img/card-sf.png'" />
+            <div class="bottomright">
+              <button (click)="getAccuracy()" color="verde" ion-button>Siguiente <ion-icon name="arrow-forward"></ion-icon>
+              </button>
+            </div>        
+        </div>
+
+         <div *ngSwitchCase = "'search'">
+            <br>
+            <div class="textp"> 
+              <p>Se esta analizando la imagen...</p>
+              <p>Comparando con casos similares</p>
+            </div>
+            <br>
+            <!--<img [src]="panneaux[0].img" />-->
+            <img src={{micoskinPicture}} />
+            <!--<p>{{micoskinPicture}}</p>
+            <img src='assets/img/piel/tinea_negra.jpg'/>-->
+
+
+            
+            <div class="bottomright">
+              <button (click)="changeDiagnostico()" color="verde" ion-button>Ver resultados<ion-icon name="arrow-forward"></ion-icon>
+              </button>
+            </div>        
+        </div>
+
+        <div *ngSwitchCase = "'diagnostico'">
+           <br> 
+                  <ion-card>
+                      <br>
+                      <ion-card-header>
+                        <h1 style="text-align:center ">PRE-DIAGNOSTICO</h1>
+                        <img [src]="chosenPicture || placeholder" onerror="this.src='assets/img/card-sf.png'" width="100" height="180"/>
+                      </ion-card-header>
+                      <ion-card-content>
+                        <ion-list >
+                        <ion-item>
+                            <ion-label>RESULTADOS:  {{chosenPicture2[0]['category']}} </ion-label>
+                        </ion-item> 
+                        <ion-item>
+                            <ion-label>GRADO DE SENSIBILIDAD:  {{chosenPicture2[0]['percent']-0.3}}%</ion-label>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label>FECHA: {{myActualDate}}</ion-label>
+                        </ion-item>
+                        <ion-item>
+                        <ion-label>DNI : </ion-label>
+                        <ion-select class="form-control" id="dni"
+                      required
+                      [(ngModel)]="dni" name="dni"
+                        >
+                        <!--[value]="{{user.dni}}"-->
+                        <ion-option *ngFor="let user of users" [value]="user.dni" >{{user.dni}}</ion-option>
+                        </ion-select>
+                        </ion-item>
+                      </ion-list>
+
+                      </ion-card-content>
+
+                      <button (click)="changePrincipal2()" color="verde" ion-button full>ACEPTAR</button>
+                  </ion-card> 
+                  
+        </div>
+
+        <div *ngSwitchCase = "'nada'">
+            <br>
+            <h1 style="text-align:center ">RESULTADOS</h1>
+            <div class="textp"> 
+              <p style='text-align: justify;'>No se ha detectado alguna anomalía.</p>
+              <p style='text-align: justify;'>Si tiene dudas recomendamos consultar con un doctor.</p>
+            </div>
+            <br>
+            <img [src]="chosenPicture || placeholder" onerror="this.src='assets/img/card-sf.png'" />
+              
+            
+            <button (click)="changePrincipal()" color="verde" ion-button full>ACEPTAR</button>
+       
+        </div>
+       
+ </div>
+
+      </ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>
+
+<!--(click)="loadPicture()"-->

@@ -1,0 +1,40 @@
+<ion-header >
+  <ion-navbar color="primary" >
+    <ion-title >
+      <ion-icon name="menu" menuToggle></ion-icon>
+      REGISTRAR
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content text-center class="icons-basic-page">
+<ion-grid>
+  <ion-row>
+      <ion-col >
+ 		<div class="textp"> 
+              <br>
+              <h1 style="text-align:center "><b>Registro</b></h1>
+
+              <form (ngSubmit)="onSubmit()">
+              <ion-input placeholder="Nombres:" required [(ngModel)]="model.nombres" name="nombres"></ion-input>
+              <ion-input placeholder="Apellidos:" required [(ngModel)]="model.apellidos" name="apellidos"></ion-input>
+              <ion-input placeholder="DNI:" type="number" [(ngModel)]="model.dni" name="dni"></ion-input>
+              <ion-item>
+              <ion-label for="sexo">  Sexo</ion-label>
+                  <ion-select class="form-control" id="sexo"
+                required
+                [(ngModel)]="model.sexo" name="sexo"
+                  >
+                  <ion-option *ngFor="let sex of sexo" [value]="sex">{{sex}}</ion-option>
+                  </ion-select>
+              </ion-item>
+              <br>
+              <br>
+              <button ion-button color="primary" (click)="nuevaPersona()" block outline>Registrar</button>
+              </form>
+ 		</div>
+ 	</ion-col>
+  </ion-row>
+</ion-grid>
+
+</ion-content>

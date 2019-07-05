@@ -1,0 +1,15 @@
+<ion-header >
+  <ion-navbar color="primary" >
+    <ion-title >
+      <ion-icon name="menu" menuToggle></ion-icon>
+      FOTOGRAFIAS
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+<ion-card *ngFor= "let task of tasks">
+  <img src={{task.imagen}}/>
+</ion-card>
+</ion-content>
+
